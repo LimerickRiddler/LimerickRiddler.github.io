@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<script type="text/javascript">
+
+      function check(value) {
+      d1 = value % 10; 
+      d2 = Math.trunc(value/10) % 10;
+      d3 = Math.trunc(value/100) % 10;
+      d4 = Math.trunc(value/1000) % 10;
+      d5 = Math.trunc(value/10000) % 10;
+      return d1+d2+d3+d4+d5;
+      }
+
+      function solve() {
+
+      num1 = data.elements["num1"].value;
+      num2 = data.elements["num2"].value;
+      num3 = data.elements["num3"].value;
+      num4 = data.elements["num4"].value;
+      num5 = data.elements["num5"].value;
+      north1 = data.elements["north1"].value;
+      north2 = data.elements["north2"].value;
+      north3 = data.elements["north3"].value;
+      north4 = data.elements["north4"].value;
+      north5 = data.elements["north5"].value;
+      west1 = data.elements["west1"].value;
+      west2 = data.elements["west2"].value;
+      west3 = data.elements["west3"].value;
+      west4 = data.elements["west4"].value;
+      west5 = data.elements["west5"].value;
+
+      a1 = (-num2)*(-num3)*(-num4)*(-num5);
+      a2 = (-num1)*(-num3)*(-num4)*(-num5);
+      a3 = (-num1)*(-num2)*(-num4)*(-num5);
+      a4 = (-num1)*(-num2)*(-num3)*(-num5);
+      a5 = (-num1)*(-num2)*(-num3)*(-num4);
+
+      b1 = (num1-num2)*(num1-num3)*(num1-num4)*(num1-num5);
+      b2 = (num2-num1)*(num2-num3)*(num2-num4)*(num2-num5);
+      b3 = (num3-num1)*(num3-num2)*(num3-num4)*(num3-num5);
+      b4 = (num4-num1)*(num4-num2)*(num4-num3)*(num4-num5);
+      b5 = (num5-num1)*(num5-num2)*(num5-num3)*(num5-num4);
+
+      n1 = (north1*a1/b1);
+      w1 = (west1*a1/b1);
+      n2 = (north2*a2/b2);
+      w2 = (west2*a2/b2);
+      n3 = (north3*a3/b3);
+      w3 = (west3*a3/b3);
+      n4 = (north4*a4/b4);
+      w4 = (west4*a4/b4);
+      n5 = (north5*a5/b5);
+      w5 = (west5*a5/b5);
+
+      north =  Math.round(n1+n2+n3+n4+n5);
+      tickmark =  String.fromCharCode(0x2713);
+      if (check(north) != 16)
+            tickmark =  String.fromCharCode(0x2717);
+      north =  Math.round(north)/1000;
+      data.elements["north"].value = "52° " + north.toFixed(3) + " " + tickmark;
+
+      west = Math.round(w1+w2+w3+w4+w5);
+      tickmark =  String.fromCharCode(0x2713);
+      if (check(west) != 18)
+            tickmark =  String.fromCharCode(0x2717);
+
+      west = Math.round(west)/1000;
+      data.elements["west"].value = "008° " + west.toFixed(3) + " " + tickmark;
+      }
+
+	</script>
+  <head>
+    <title>Cratloe Woods Bonus calculator</title>
+  </head>
+
+  <body>
+    <h1>Cratloe Woods Bonus calculator</h1>
+
+<form id="data" method="post" action="#">
+<!-- input: name is for JavaScript access. id is for style -->
+<p class="eqn">
+Bonus secret <input type="text" name="num1" value="" size="2" /> &nbsp;&nbsp;
+North <input type="text" name="north1"  size="6" value=""  /> &nbsp;&nbsp;
+West  <input type="text" name="west1"   size="6" value=""  />  </p>
+<p class="eqn">
+Bonus secret <input type="text" name="num2" value="" size="2" /> &nbsp;&nbsp;
+North <input type="text" name="north2" size="6" value=""  />  &nbsp;&nbsp;
+West  <input type="text" name="west2"  size="6" value=""  />  </p>
+<p class="eqn">
+Bonus secret <input type="text" name="num3" value="" size="2" /> &nbsp;&nbsp;
+North <input type="text" name="north3"  size="6" value=""  />  &nbsp;&nbsp;
+West  <input type="text" name="west3"  size="6" value=""  />  </p>
+<p class="eqn">
+Bonus secret <input type="text" name="num4" value="" size="2" /> &nbsp;&nbsp;
+North <input type="text" name="north4"  size="6" value=""  />  &nbsp;&nbsp;
+West  <input type="text" name="west4"   size="6" value=""  />  </p>
+<p class="eqn">
+Bonus secret <input type="text" name="num5" value="" size="2" /> &nbsp;&nbsp;
+North <input type="text" name="north5"  size="6" value="" />  &nbsp;&nbsp;
+West  <input type="text" name="west5"  size="6" value=""  />  </p>
+
+<p class="btn">
+<input type="button" value="&nbsp;Solve&nbsp;" onclick="solve();" class="button" title="Solve" />&nbsp;&nbsp;
+
+<input type="reset" value="&nbsp;Clear&nbsp;" class="button" title="Clear" /></p>
+
+<p class="sol">
+North = <input readonly="readonly" type="text" name="north" size="10" value="" class="soln" />&nbsp;&nbsp;
+West = <input readonly="readonly" type="text" name="west" size="10" value="" class="soln" />&nbsp;&nbsp;</p>
+</form>
+
+    <hr>
+<!-- Created: Sun Aug  2 12:00:44 IST 2015 -->
+<!-- hhmts start -->
+Last modified: Mon Aug  3 10:58:14 IST 2015
+<!-- hhmts end -->
+  </body>
+</html>
